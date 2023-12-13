@@ -17,7 +17,7 @@ void ConverterJSON::GetConfig() {
     if(config["config"]["version"] != version) {
         throw IncorrectProgramVersion();
     }
-    std::cout << config["config"]["name"] << " version " << config["config"]["version"] << std::endl;
+    std::cout << config["config"]["name"].get<std::string>() << " version " << config["config"]["version"].get<std::string>() << std::endl;
 }
 
 std::vector<std::string> ConverterJSON::GetTextDocuments() {

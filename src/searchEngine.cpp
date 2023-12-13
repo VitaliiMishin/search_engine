@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "ctime"
+#include <ctime>
 
 #include "converterJSON.h"
 #include "invertedIndex.h"
@@ -74,7 +74,7 @@ int main()
     }
 
     time_t finishTime = time(nullptr);
-    std::cout << "Program running time: " << std::difftime(finishTime,startTime) << " seconds." << std::endl;
+    std::cout << "Search completed after " << std::difftime(finishTime,startTime) << " seconds." << std::endl;
 
     return 0;
 }
