@@ -3,7 +3,7 @@
 #include <vector>
 #include <ctime>
 
-#include "converterJSON.h"
+#include "converterJson.h"
 #include "invertedIndex.h"
 #include "searchServer.h"
 #include "customExeptions.h"
@@ -16,14 +16,14 @@ int main()
     std::string  pathToJson = "json/";
     std::vector<std::string> queriesInput;
     int responsesLimit;
-    ConverterJSON converterJSON(pathToJson);
+    ConverterJson converterJson(pathToJson);
     InvertedIndex invertedIndex;
     try
     {
-        converterJSON.GetConfig();
-        invertedIndex.docs = converterJSON.GetTextDocuments();
-        queriesInput = converterJSON.GetRequests();
-        responsesLimit = converterJSON.GetResponsesLimit();
+        converterJson.GetConfig();
+        invertedIndex.docs = converterJson.GetTextDocuments();
+        queriesInput = converterJson.GetRequests();
+        responsesLimit = converterJson.GetResponsesLimit();
         invertedIndex.UpdateDocumentBase(invertedIndex.docs);
     }
     catch (const ConfigFileIsMissing &exception)
@@ -65,7 +65,7 @@ int main()
     std::vector<std::vector<RelativeIndex>> answers = searchServer.search(queriesInput, responsesLimit);
     try
     {
-        converterJSON.putAnswers(answers);
+        converterJson.putAnswers(answers);
     }
     catch (const AnswersFileNotOpen &exception)
     {

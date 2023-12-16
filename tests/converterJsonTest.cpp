@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "converterJSON.h"
+#include "converterJson.h"
 #include "searchServer.h"
 #include <nlohmann/json.hpp>
 
@@ -48,7 +48,7 @@ nlohmann::json requestsFile = {
                 "moscow is the capital of russia",
                 "water milk"}}};
 
-TEST(TestCaseConverterJSON, GetConfig)
+TEST(TestCaseConverterJson, GetConfig)
 {
    nlohmann::json expected = R"({
        "config": {
@@ -79,13 +79,13 @@ TEST(TestCaseConverterJSON, GetConfig)
     file << configFile.dump(4);
     file.close();
 
-    ConverterJSON converterJSON("");
-    converterJSON.GetConfig();
-    nlohmann::json config = converterJSON.config;
+    ConverterJson converterJson("");
+    converterJson.GetConfig();
+    nlohmann::json config = converterJson.config;
     EXPECT_EQ(expected, config);
 }
 
-TEST(TestCaseConverterJSON, GetTextDocuments)
+TEST(TestCaseConverterJson, GetTextDocuments)
 {
     std::ofstream file("config.json");
     file << configFile.dump(4);
@@ -98,27 +98,27 @@ TEST(TestCaseConverterJSON, GetTextDocuments)
         textFile.close();
     }
 
-    ConverterJSON converterJSON("");
-    converterJSON.GetConfig();
+    ConverterJson converterJson("");
+    converterJson.GetConfig();
 
-    std::vector<std::string> texts = converterJSON.GetTextDocuments();
+    std::vector<std::string> texts = converterJson.GetTextDocuments();
     EXPECT_EQ(texts, docs);
 }
 
-TEST(TestCaseConverterJSON, GetResponsesLimit)
+TEST(TestCaseConverterJson, GetResponsesLimit)
 {
     std::ofstream file("config.json");
     file << configFile.dump(4);
     file.close();
 
-    ConverterJSON converterJSON("");
-    converterJSON.GetConfig();
+    ConverterJson converterJson("");
+    converterJson.GetConfig();
 
-    int responsesLimit = converterJSON.GetResponsesLimit();
+    int responsesLimit = converterJson.GetResponsesLimit();
     EXPECT_EQ(responsesLimit, 5);
 }
 
-TEST(TestCaseConverterJSON, GetRequests)
+TEST(TestCaseConverterJson, GetRequests)
 {
     std::ofstream file("config.json");
     file << configFile.dump(4);
@@ -128,25 +128,25 @@ TEST(TestCaseConverterJSON, GetRequests)
     fileForRequests << requestsFile.dump(4);
     fileForRequests.close();
 
-    ConverterJSON converterJSON("");
-    converterJSON.GetConfig();
+    ConverterJson converterJson("");
+    converterJson.GetConfig();
 
     std::vector<std::string> requests = {
             "london",
             "moscow is the capital of russia",
             "water milk"};
-    std::vector<std::string> queriesInput = converterJSON.GetRequests();
+    std::vector<std::string> queriesInput = converterJson.GetRequests();
     EXPECT_EQ(requests, queriesInput);
 }
 
-TEST(TestCaseConverterJSON, PutAnswer)
+TEST(TestCaseConverterJson, PutAnswer)
 {
     std::ofstream file("config.json");
     file << configFile.dump(4);
     file.close();
 
-    ConverterJSON converterJSON("");
-    converterJSON.GetConfig();
+    ConverterJson converterJson("");
+    converterJson.GetConfig();
 
     std::vector<std::vector<RelativeIndex>> answers = {
             {{0, 1.0f}},
@@ -193,7 +193,7 @@ TEST(TestCaseConverterJSON, PutAnswer)
     }
 })"_json;
 
-    converterJSON.putAnswers(answers);
+    converterJson.putAnswers(answers);
     auto fileForAnswers = std::ifstream("answers.json");
     nlohmann::json answersFile = nlohmann::json::parse(fileForAnswers);
     fileForAnswers.close();

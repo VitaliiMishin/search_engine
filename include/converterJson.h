@@ -10,9 +10,9 @@
 #include "searchServer.h"
 #include "customExeptions.h"
 
-class ConverterJSON {
+class ConverterJson {
 public:
-    explicit ConverterJSON(std::string pathToJson) : path(std::move(pathToJson)) {};
+    explicit ConverterJson(std::string pathToJson) : path(std::move(pathToJson)) {};
 
     void GetConfig();
     /**

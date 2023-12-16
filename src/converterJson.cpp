@@ -1,6 +1,6 @@
-#include "converterJSON.h"
+#include "converterJson.h"
 
-void ConverterJSON::GetConfig() {
+void ConverterJson::GetConfig() {
     std::ifstream configFile(path + "config.json");
     if (configFile.is_open()) {
         config = nlohmann::json::parse(configFile);
@@ -20,7 +20,7 @@ void ConverterJSON::GetConfig() {
     std::cout << config["config"]["name"].get<std::string>() << " version " << config["config"]["version"].get<std::string>() << std::endl;
 }
 
-std::vector<std::string> ConverterJSON::GetTextDocuments() {
+std::vector<std::string> ConverterJson::GetTextDocuments() {
     std::vector<std::string> docs;
 
     if (config.contains("files") && (!config["files"].is_null())) {
@@ -43,7 +43,7 @@ std::vector<std::string> ConverterJSON::GetTextDocuments() {
     return docs;
 }
 
-int ConverterJSON::GetResponsesLimit() {
+int ConverterJson::GetResponsesLimit() {
     if (config["config"].contains("max_responses")) {
         return config["config"]["max_responses"];
     } else {
@@ -51,7 +51,7 @@ int ConverterJSON::GetResponsesLimit() {
     }
 }
 
-std::vector<std::string> ConverterJSON::GetRequests() {
+std::vector<std::string> ConverterJson::GetRequests() {
     std::ifstream requestsFile(path + "requests.json");
     nlohmann::json requests;
     if (requestsFile.is_open()) {
@@ -70,8 +70,8 @@ std::vector<std::string> ConverterJSON::GetRequests() {
     return queries;
 }
 
-void ConverterJSON::putAnswers(std::vector<std::vector<RelativeIndex>> answers) {
-    int maxResponses = ConverterJSON::GetResponsesLimit();
+void ConverterJson::putAnswers(std::vector<std::vector<RelativeIndex>> answers) {
+    int maxResponses = ConverterJson::GetResponsesLimit();
     nlohmann::json answersToFile;
     for(int i = 0; i < answers.size(); ++i) {
         int countResponses = maxResponses;
