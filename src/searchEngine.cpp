@@ -61,9 +61,10 @@ int main()
         std::cerr << exception.what() << std::endl;
         return 0;
     }
-    catch (...)
+    catch (const nlohmann::json::parse_error &exception)
     {
         std::cerr << "Invalid JSON file!" << std::endl;
+        std::cerr << exception.what() << std::endl;
         return 0;
     }
     SearchServer searchServer(std::move(invertedIndex));

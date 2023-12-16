@@ -7,9 +7,9 @@ void ConverterJson::GetConfig() {
         {
             config = nlohmann::json::parse(configFile);
         }
-        catch (...)
+        catch (const nlohmann::json::parse_error &exception)
         {
-            throw;
+            throw exception;
         }
         configFile.close();
         if(!config.contains("config")) {
@@ -66,9 +66,9 @@ std::vector<std::string> ConverterJson::GetRequests() {
         {
             requests = nlohmann::json::parse(requestsFile);
         }
-        catch (...)
+        catch (const nlohmann::json::parse_error &exception)
         {
-            throw;
+            throw exception;
         }
         requestsFile.close();
     } else {
