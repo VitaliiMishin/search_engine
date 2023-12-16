@@ -38,3 +38,4 @@ Possible error messages
 "Answers file not open!" - failed to create or open the answers.json file;  
 "Invalid program name!" - the name of the search program in the config.json file did not match the name of the application;  
 "Incorrect program version!" - the version of the search program in the config.json file did not match the version of the application.  
+"Invalid JSON file!" - error parsing JSON file.
