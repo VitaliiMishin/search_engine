@@ -3,7 +3,14 @@
 void ConverterJson::GetConfig() {
     std::ifstream configFile(path + "config.json");
     if (configFile.is_open()) {
-        config = nlohmann::json::parse(configFile);
+        try
+        {
+            config = nlohmann::json::parse(configFile);
+        }
+        catch (...)
+        {
+            throw;
+        }
         configFile.close();
         if(!config.contains("config")) {
             throw ConfigFileIsEmpty();
@@ -55,7 +62,14 @@ std::vector<std::string> ConverterJson::GetRequests() {
     std::ifstream requestsFile(path + "requests.json");
     nlohmann::json requests;
     if (requestsFile.is_open()) {
-        requests = nlohmann::json::parse(requestsFile);
+        try
+        {
+            requests = nlohmann::json::parse(requestsFile);
+        }
+        catch (...)
+        {
+            throw;
+        }
         requestsFile.close();
     } else {
         throw RequestsFileIsMissing();

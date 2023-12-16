@@ -61,6 +61,11 @@ int main()
         std::cerr << exception.what() << std::endl;
         return 0;
     }
+    catch (...)
+    {
+        std::cerr << "Invalid JSON file!" << std::endl;
+        return 0;
+    }
     SearchServer searchServer(std::move(invertedIndex));
     std::vector<std::vector<RelativeIndex>> answers = searchServer.search(queriesInput, responsesLimit);
     try
