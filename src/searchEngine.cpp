@@ -26,44 +26,8 @@ int main()
         responsesLimit = converterJson.GetResponsesLimit();
         invertedIndex.UpdateDocumentBase(invertedIndex.docs);
     }
-    catch (const ConfigFileIsMissing &exception)
+    catch (const std::exception &exception)
     {
-        std::cerr << exception.what() << std::endl;
-        return 0;
-    }
-    catch (const ConfigFileIsEmpty &exception)
-    {
-        std::cerr << exception.what() << std::endl;
-        return 0;
-    }
-    catch (const RequestsFileIsMissing &exception)
-    {
-        std::cerr << exception.what() << std::endl;
-        return 0;
-    }
-    catch (const RequestsFileIsEmpty &exception)
-    {
-        std::cerr << exception.what() << std::endl;
-        return 0;
-    }
-    catch (const NoDocumentsToIndex &exception)
-    {
-        std::cerr << exception.what() << std::endl;
-        return 0;
-    }
-    catch (const InvalidProgramName &exception)
-    {
-        std::cerr << exception.what() << std::endl;
-        return 0;
-    }
-    catch (const IncorrectProgramVersion &exception)
-    {
-        std::cerr << exception.what() << std::endl;
-        return 0;
-    }
-    catch (const nlohmann::json::parse_error &exception)
-    {
-        std::cerr << "Invalid JSON file!" << std::endl;
         std::cerr << exception.what() << std::endl;
         return 0;
     }
